@@ -10,7 +10,9 @@ import com.gtm.ilern.rm.vo.CreatePermissionVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
@@ -26,21 +28,27 @@ public class PermissionService {
     @Autowired
     ResourceService resourceService;
 
-    public List<Permission> getAlPermission()
-    {
-        return permissionRepository.findAll();
+    public List<PermissionDTO> getAlPermission() {
+        List<Permission> permissions = permissionRepository.findAll();
+
+        List<PermissionDTO> permissionDTOS = new ArrayList<PermissionDTO>();
+
+        for (Permission permission : permissions) {
+            permissionDTOS.add(new PermissionDTO(permission.getId(), permission.getName(), permission.getAction().getName(), permission.getResource().getName()));
+        }
+
+        return permissionDTOS;
     }
 
-    public PermissionDTO createPermission(CreatePermissionVO createPermissionVO)
-    {
+    public PermissionDTO createPermission(CreatePermissionVO createPermissionVO) {
+
         Action action = actionService.getActionByName(createPermissionVO.getActionName());
         Resource resource = resourceService.getResourceByName(createPermissionVO.getResourceName());
 
         Permission permission = new Permission();
-                permission.setAction(action);
-                permission.setName(resource.getName()+"."+action.getName());
-                permission.setResource(resource);
-//                Permission.builder().action(action).resource(resource).name(resource.getName()+"."+action.getName()).build();
+        permission.setAction(action);
+        permission.setName(resource.getName() + "." + action.getName());
+        permission.setResource(resource);
 
         Permission permission_ = permissionRepository.save(permission);
         PermissionDTO permissionDTO = new PermissionDTO();
@@ -51,10 +59,13 @@ public class PermissionService {
         return permissionDTO;
     }
 
-    public List<Role> getPermissionRoles(Integer id)
-    {
+    public List<Role> getPermissionRoles(Integer id) {
         Permission permission = permissionRepository.getById(id);
-        List<Role> roleList = permission.getRolePermissionMappingSet().stream().map(x->x.getRole()).collect(Collectors.toList());
+        List<Role> roleList = permission.getRolePermissionMappingSet().stream().map(x -> x.getRole()).collect(Collectors.toList());
         return roleList;
+    }
+
+    public Permission getPermissionByName(String permission) {
+        return permissionRepository.findByName(permission);
     }
 }
