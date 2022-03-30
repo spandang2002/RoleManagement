@@ -1,7 +1,5 @@
 package com.gtm.ilern.rm.entity;
 
-import com.gtm.ilern.rm.entity.Permission;
-import com.gtm.ilern.rm.entity.Role;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -22,4 +20,5 @@ public class RolePermissionMapping {
     @ManyToOne
     @JoinColumn(name = "permission_id")
     private Permission permission;
+
 }

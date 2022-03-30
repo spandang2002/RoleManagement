@@ -1,19 +1,25 @@
 package com.gtm.ilern.rm.entity;
 
+import lombok.Builder;
 import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Table(name = "permission")
 @Entity
 @Data
+//@Getter
+//@Builder
+@NoArgsConstructor
 public class Permission {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Integer id;
 
-    @Lob
     @Column(name = "name", nullable = false)
     private String name;
 
@@ -24,4 +30,11 @@ public class Permission {
     @ManyToOne
     @JoinColumn(name = "resource_id")
     private Resource resource;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "permission")
+    private Set<RolePermissionMapping> rolePermissionMappingSet;
+
+
+//    public Permission() {
+//    }
 }

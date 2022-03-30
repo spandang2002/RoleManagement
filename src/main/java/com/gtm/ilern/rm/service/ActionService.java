@@ -23,4 +23,8 @@ public class ActionService {
     {
         return actionRepository.save(action);
     }
+
+    public Action getActionByName(String actionName) {
+        return actionRepository.findByName(actionName);
+    }
 }

@@ -3,6 +3,7 @@ package com.gtm.ilern.rm.entity;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Table(name = "role")
 @Entity
@@ -13,7 +14,10 @@ public class Role {
     @Column(name = "id", nullable = false)
     private Integer id;
 
-    @Lob
     @Column(name = "name", nullable = false)
     private String name;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "role")
+    private Set<RolePermissionMapping> rolePermissionMappingSet;
+
 }
