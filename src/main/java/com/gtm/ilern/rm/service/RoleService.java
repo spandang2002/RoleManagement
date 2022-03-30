@@ -28,10 +28,13 @@ public class RoleService {
     RolePermissionMappingRepository rolePermissionMappingRepository;
 
     public List<RoleDTO> getAllRole() {
+
         List<RoleDTO> roleDTOS = new ArrayList<>();
         List<Role> roleList = roleRepository.findAll();
         for (Role role : roleList) {
-            roleDTOS.add(new RoleDTO(role.getId(), role.getName()));
+
+            List<String> permissionName = role.getRolePermissionMappingSet().stream().map(x -> x.getPermission().getName()).collect(Collectors.toList());
+            roleDTOS.add(new RoleDTO(role.getId(), role.getName(), permissionName));
         }
 
         return roleDTOS;
