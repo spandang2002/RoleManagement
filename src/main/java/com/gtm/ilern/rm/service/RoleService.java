@@ -48,13 +48,16 @@ public class RoleService {
         Role role_ = roleRepository.save(role);
 
         for (String permission : createRoleVO.getPermissions()) {
+            /* Primary task.... */
             Permission p = permissionService.getPermissionByName(permission);
-            permissions.add(p);
-
             RolePermissionMapping rolePermissionMapping = new RolePermissionMapping();
             rolePermissionMapping.setRole(role_);
             rolePermissionMapping.setPermission(p);
             RolePermissionMapping tmp = rolePermissionMappingRepository.save(rolePermissionMapping);
+
+            /* Secondary task... */
+            permissions.add(p);
+
         }
 
         List<String> permissionNameList = permissions.stream().map(x -> x.getName()).collect(Collectors.toList());

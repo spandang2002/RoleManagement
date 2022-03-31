@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
@@ -34,7 +33,7 @@ public class PermissionService {
         List<PermissionDTO> permissionDTOS = new ArrayList<PermissionDTO>();
 
         for (Permission permission : permissions) {
-            permissionDTOS.add(new PermissionDTO(permission.getId(), permission.getName(), permission.getAction().getName(), permission.getResource().getName()));
+            permissionDTOS.add(new PermissionDTO(permission.getId(), permission.getName(), permission.getResource().getName(), permission.getAction().getName()));
         }
 
         return permissionDTOS;
