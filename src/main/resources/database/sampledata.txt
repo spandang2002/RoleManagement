@@ -1,0 +1,80 @@
+Action:
+[
+    {
+        "id": "1",
+        "name": "WRITE"
+    },
+    {
+        "id": "2",
+        "name": "READ"
+    },
+    {
+        "id": "3",
+        "name": "EXECUTE"
+    },
+    {
+        "id": "4",
+        "name": "DELETE"
+    }
+]
+Resource:
+[
+    {
+        "id": "1",
+        "name": "R53"
+    },
+    {
+        "id": "2",
+        "name": "AWS"
+    },
+    {
+        "id": "3",
+        "name": "DOCKER"
+    },
+    {
+        "id": "4",
+        "name": "DB"
+    }
+]
+Permission:
+[
+    {
+        "id": 1,
+        "name": "DB.WRITE",
+        "resourceNmae": "DB",
+        "actionName": "WRITE"
+    },
+    {
+        "id": 2,
+        "name": "R53.WRITE",
+        "resourceNmae": "R53",
+        "actionName": "WRITE"
+    },
+    {
+        "id": 3,
+        "name": "AWS.READ",
+        "resourceNmae": "AWS",
+        "actionName": "READ"
+    }
+]
+
+Role:
+Input:
+{
+    "roleName":"Emp-Custom1",
+    "permissions":[
+        "AWS.READ","DB.WRITE","R53.WRITE","AWS.READ"
+    ]
+}
+Output:
+[
+    {
+        "id": 1,
+        "name": "Emp-Custom1",
+        "permissions": [
+            "R53.WRITE",
+            "AWS.READ",
+            "DB.WRITE"
+        ]
+    }
+]
