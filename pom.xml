@@ -67,7 +67,7 @@
 				</configuration>
 			</plugin>
 		</plugins>
-<!--		<finalName>chk</finalName>-->
+		<finalName>role_management</finalName>
 	</build>
 
 </project>
