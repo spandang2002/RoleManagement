@@ -1,5 +1,6 @@
 package com.gtm.ilern.rm.controller;
 
+import com.gtm.ilern.rm.dto.ActionDTO;
 import com.gtm.ilern.rm.entity.Action;
 import com.gtm.ilern.rm.service.ActionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +17,7 @@ public class ActionController {
     ActionService actionService;
 
     @GetMapping
-    public List<Action> getAllAction()
+    public List<ActionDTO> getAllAction()
     {
         return actionService.getAllAction();
     }

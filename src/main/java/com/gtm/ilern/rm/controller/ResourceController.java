@@ -1,5 +1,6 @@
 package com.gtm.ilern.rm.controller;
 
+import com.gtm.ilern.rm.dto.ResourceDTO;
 import com.gtm.ilern.rm.entity.Resource;
 import com.gtm.ilern.rm.service.ResourceService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +17,7 @@ public class ResourceController {
     ResourceService resourceService;
 
     @GetMapping
-    public List<Resource> getAllResource()
+    public List<ResourceDTO> getAllResource()
     {
         return resourceService.getAllResource();
     }

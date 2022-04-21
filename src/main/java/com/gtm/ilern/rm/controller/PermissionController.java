@@ -1,7 +1,6 @@
 package com.gtm.ilern.rm.controller;
 
 import com.gtm.ilern.rm.dto.PermissionDTO;
-import com.gtm.ilern.rm.entity.Permission;
 import com.gtm.ilern.rm.entity.Role;
 import com.gtm.ilern.rm.service.PermissionService;
 import com.gtm.ilern.rm.vo.CreatePermissionVO;
@@ -19,7 +18,7 @@ public class PermissionController {
     PermissionService permissionService;
 
     @GetMapping
-    public List<Permission> getAllPermission()
+    public List<PermissionDTO> getAllPermission()
     {
         return permissionService.getAlPermission();
     }
@@ -30,13 +29,6 @@ public class PermissionController {
 
         return permissionService.createPermission(createPermissionVO);
     }
-
-    //TODO: not usable
-//    @PostMapping
-//    public Permission createPermission(@RequestBody Permission permission)
-//    {
-//        return permissionService.createPermission(permission);
-//    }
 
     @GetMapping("{id}/roles")
     public List<Role> getPermissionRole(@RequestParam Integer id)

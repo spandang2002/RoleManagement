@@ -1,19 +1,14 @@
 package com.gtm.ilern.rm.entity;
 
-import lombok.Builder;
-import lombok.Data;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-
 import javax.persistence.*;
 import java.util.Set;
 
 @Table(name = "permission")
 @Entity
-@Data
+//@Data
 //@Getter
 //@Builder
-@NoArgsConstructor
+//@NoArgsConstructor
 public class Permission {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -34,7 +29,53 @@ public class Permission {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "permission")
     private Set<RolePermissionMapping> rolePermissionMappingSet;
 
+    public Permission() {
+    }
 
-//    public Permission() {
-//    }
+    public Permission(Integer id, String name, Action action, Resource resource) {
+        this.id = id;
+        this.name = name;
+        this.action = action;
+        this.resource = resource;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Action getAction() {
+        return action;
+    }
+
+    public void setAction(Action action) {
+        this.action = action;
+    }
+
+    public Resource getResource() {
+        return resource;
+    }
+
+    public void setResource(Resource resource) {
+        this.resource = resource;
+    }
+
+    public Set<RolePermissionMapping> getRolePermissionMappingSet() {
+        return rolePermissionMappingSet;
+    }
+
+    public void setRolePermissionMappingSet(Set<RolePermissionMapping> rolePermissionMappingSet) {
+        this.rolePermissionMappingSet = rolePermissionMappingSet;
+    }
 }

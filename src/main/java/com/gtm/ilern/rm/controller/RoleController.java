@@ -1,7 +1,8 @@
 package com.gtm.ilern.rm.controller;
 
-import com.gtm.ilern.rm.entity.Role;
+import com.gtm.ilern.rm.dto.RoleDTO;
 import com.gtm.ilern.rm.service.RoleService;
+import com.gtm.ilern.rm.vo.CreateRoleVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,14 +17,14 @@ public class RoleController {
     RoleService roleService;
 
     @GetMapping
-    public List<Role> getAllRole()
+    public List<RoleDTO> getAllRole()
     {
         return roleService.getAllRole();
     }
 
     @PostMapping
-    public Role createRole(@RequestBody Role role)
+    public RoleDTO createRole(@RequestBody CreateRoleVO createRoleVO)
     {
-        return roleService.createRole(role);
+        return roleService.createRole(createRoleVO);
     }
 }

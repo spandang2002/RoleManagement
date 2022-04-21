@@ -7,7 +7,6 @@ import java.util.Set;
 
 @Table(name = "role")
 @Entity
-@Data
 public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,4 +19,30 @@ public class Role {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "role")
     private Set<RolePermissionMapping> rolePermissionMappingSet;
 
+    public Role() {
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Set<RolePermissionMapping> getRolePermissionMappingSet() {
+        return rolePermissionMappingSet;
+    }
+
+    public void setRolePermissionMappingSet(Set<RolePermissionMapping> rolePermissionMappingSet) {
+        this.rolePermissionMappingSet = rolePermissionMappingSet;
+    }
 }
